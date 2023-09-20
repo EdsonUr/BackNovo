@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const userRoute = require("./src/routes/user.route")
 const racaoRoute = require("./src/routes/racao.route")
+const brinquedoRoute = require("./src/routes/brinquedo.route")
 const connectDatabase = require("./src/database/db")
 
 const app = express();
@@ -19,5 +20,6 @@ app.use(express.json())
 
 app.use("/user", userRoute);
 app.use("/racao", racaoRoute);
+app.use("/brinquedo", brinquedoRoute )
 
 app.listen(port, () => console.log(`http://localhost:${port}`))

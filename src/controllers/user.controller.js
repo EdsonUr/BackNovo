@@ -54,5 +54,16 @@ const findById = async (req,res) => {
     res.send(user)
 }
 
+const findByName = async (req,res) => {
+    const name = req.params.name;
 
-module.exports = { create, findAll, findById}
+    const user = await userService.findBName(name);
+
+    if(user.length < 1){
+        return res.status(400).send({message: "User not found"})
+    }
+
+    res.send(user)
+}
+
+module.exports = { create, findAll, findById, findByName}

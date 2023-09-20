@@ -3,8 +3,8 @@ const racaoService = require("../services/racao.service")
 const mongoose = require("mongoose")
 
 const create = async(req,res) => {
-    const {name, price, peso, dataCompra} = req.body;
-    if(!name || !price || !peso || !dataCompra){
+    const {name, price, peso, rating, dataCompra} = req.body;
+    if(!name || !price || !peso || !rating || !dataCompra){
         res.status(400).send({message: "Todos os campos precisam estar preenchidos"})
     }
 
@@ -15,7 +15,6 @@ const create = async(req,res) => {
     }
 
     const pesoKg = peso/1000;
-    console.log(pesoKg)
 
     res.status(201).send({
         message: "Racao created successfully",
@@ -23,6 +22,7 @@ const create = async(req,res) => {
             name,
             price,
             pesoKg,
+            rating,
             dataCompra
         }
     })
@@ -38,4 +38,33 @@ const findAll = async (req,res) =>{
     res.send(racoes)
 }
 
-module.exports = { create, findAll}
+const deleteOne = async (req,res) => {
+    const id = req.params.id;
+    
+    const user = await racaoService.deleteById(id);
+
+    if(!user){
+        return res.status(400).send({message: "Ração not found"})
+    }
+
+    res.send(user)
+}
+
+const editId = async (req,res) => {
+    const id = req.params.id;
+    const updates = req.body;
+    
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(400).send({message: "Invalid ID"})
+    }
+
+    const edit = await racaoService.editById(id, updates);
+
+    if(!edit){
+        return res.status(400).send({message: "Ração not found"})
+    }
+
+    res.send(edit)
+}
+
+module.exports = { create, findAll, deleteOne, editId}
