@@ -1,3 +1,4 @@
+const User = require("../models/User");
 const userService = require("../services/user.service")
 
 const mongoose = require("mongoose")
@@ -66,4 +67,16 @@ const findByName = async (req,res) => {
     res.send(user)
 }
 
-module.exports = { create, findAll, findById, findByName}
+const login = async (req,res) => {
+    const name = req.query.name;
+
+    const check = await userService.findBName(name)
+    if(check[0].password === req.query.password){
+        res.send(check)
+    }else{
+        return res.status(400).send({message: "Senha errada"})
+    }
+
+}
+
+module.exports = { create, findAll, findById, findByName, login}
