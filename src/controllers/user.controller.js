@@ -4,8 +4,8 @@ const userService = require("../services/user.service")
 const mongoose = require("mongoose")
 
 const create = async(req,res) => {
-    const {name, userName, email, password, avatar, background} = req.body;
-    if(!name || !userName || !email || !password || !avatar || !background ){
+    const {name,password} = req.body;
+    if(!name || !password){
         res.status(400).send({message: "Todos os campos precisam estar preenchidos"})
     }
 
@@ -20,11 +20,7 @@ const create = async(req,res) => {
         user:{
             id: user._id,
             name,
-            userName,
-            email,
-            password,
-            avatar,
-            background
+            password
         }
     })
 }

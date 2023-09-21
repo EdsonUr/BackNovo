@@ -6,6 +6,7 @@ const RacaoSchema = new mongoose.Schema({
     peso: {type: Number, required:true},
     rating: {type:Number, required:true},
     dataCompra: {type:String, required:true},
+    userCodigo: {type:String, required: true},
 })
 
 const Racao = mongoose.model("Racao", RacaoSchema);

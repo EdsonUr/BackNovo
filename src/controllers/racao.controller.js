@@ -3,8 +3,8 @@ const racaoService = require("../services/racao.service")
 const mongoose = require("mongoose")
 
 const create = async(req,res) => {
-    const {name, price, peso, rating, dataCompra} = req.body;
-    if(!name || !price || !peso || !rating || !dataCompra){
+    const {name, price, peso, rating, dataCompra, userCodigo} = req.body;
+    if(!name || !price || !peso || !rating || !dataCompra || !userCodigo){
         res.status(400).send({message: "Todos os campos precisam estar preenchidos"})
     }
 
@@ -23,7 +23,8 @@ const create = async(req,res) => {
             price,
             pesoKg,
             rating,
-            dataCompra
+            dataCompra,
+            userCodigo
         }
     })
 }
