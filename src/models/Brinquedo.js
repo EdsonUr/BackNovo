@@ -5,6 +5,7 @@ const BrinquedoSchema = new mongoose.Schema({
     price: {type: Number, required:true},
     rating: {type: Number, required:true},
     dataCompra: {type:String, required:true},
+    userCodigo: {type:String, required: true},
 })
 
 const Brinquedo = mongoose.model("Brinquedo", BrinquedoSchema);
