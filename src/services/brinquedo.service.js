@@ -4,4 +4,8 @@ const createService = (body) => Brinquedo.create(body)
 
 const findAllService = () => Brinquedo.find();
 
-module.exports = {createService, findAllService}
+const deleteById = (id) => Brinquedo.deleteOne({_id:id})
+
+const editById = (id, updates) => Brinquedo.updateOne({_id:id}, {$set:updates})
+
+module.exports = {createService, findAllService, deleteById, editById}
