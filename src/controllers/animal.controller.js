@@ -3,8 +3,8 @@ const animalService = require("../services/animal.service")
 const mongoose = require("mongoose")
 
 const create = async(req,res) => {
-    const {name, type, brinquedos, racoes} = req.body;
-    if(!name || !type || !brinquedos || !racoes){
+    const {name, type, userCodigo} = req.body;
+    if(!name || !type|| !userCodigo){
         res.status(400).send({message: "Todos os campos precisam estar preenchidos"})
     }
 
@@ -19,8 +19,7 @@ const create = async(req,res) => {
         racao:{
             name,
             type,
-            brinquedos,
-            racoes
+            userCodigo
         }
     })
 }

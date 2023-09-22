@@ -7,6 +7,7 @@ const RacaoSchema = new mongoose.Schema({
     rating: {type:Number, required:true},
     dataCompra: {type:String, required:true},
     userCodigo: {type:String, required: true},
+    animalCodigo:{type:String}
 })
 
 const Racao = mongoose.model("Racao", RacaoSchema);
