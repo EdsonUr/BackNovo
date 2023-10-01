@@ -6,6 +6,7 @@ const BrinquedoSchema = new mongoose.Schema({
     rating: {type: Number, required:true},
     dataCompra: {type:String, required:true},
     userCodigo: {type:String, required: true},
+    animalNome:{type:String},
     animalCodigo:{type:String}
 })
 

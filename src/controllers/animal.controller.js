@@ -34,6 +34,39 @@ const findAll = async (req,res) =>{
     res.send(animais)
 }
 
+const findById = async (req,res) => {
+    const id = req.params.id;
+
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(400).send({message: "Invalid ID"})
+    }
+    
+    const animal = await animalService.findByIdService(id);
+
+    if(!animal){
+        return res.status(400).send({message: "User not found"})
+    }
+
+    res.send(animal)
+}
+
+const findByName = async (req,res) => {
+    try{
+        const name = req.params.name;
+
+        const animal = await animalService.findBName(name);
+    
+        if(animal.length < 1){
+            return res.status(400).send({message: "animal not found"})
+        }
+    
+        res.send(animal)
+    }catch(err){
+        res.status(400).send({message: "dados inválidos"})
+    }
+    
+}
+
 const deleteOne = async (req,res) => {
     const id = req.params.id;
     
@@ -64,4 +97,4 @@ const editId = async (req,res) => {
 }
 
 
-module.exports = { create, findAll, deleteOne, editId}
+module.exports = { create, findAll, deleteOne, editId, findById, findByName}

@@ -4,6 +4,7 @@ const mongoose = require("mongoose")
 
 const create = async(req,res) => {
     const {name, price, peso, rating, dataCompra, userCodigo} = req.body;
+    console.log(name, price, peso, rating, dataCompra, userCodigo)
     if(!name || !price || !peso || !rating || !dataCompra || !userCodigo){
         res.status(400).send({message: "Todos os campos precisam estar preenchidos"})
     }
