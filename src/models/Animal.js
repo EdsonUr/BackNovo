@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const AnimalSchema = new mongoose.Schema({
-    name: {type: String, required:true},
+    name: {type: String, required:true, unique:true},
     type: {type: String, required:true},
     userCodigo: {type:String, required: true},
 })
